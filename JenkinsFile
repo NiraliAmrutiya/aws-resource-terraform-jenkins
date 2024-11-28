@@ -1,0 +1,45 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Git checkout') { 
+            steps {
+                git branch: 'master' , url: 'https://github.com/NiraliAmrutiya/aws-resource-terraform-jenkins.git'
+            }
+        }
+        stage('Terraform version') { 
+            steps {
+                script {
+                    sh 'terraform --version'
+                }
+            }
+        }
+        stage('Terraform Initialise') { 
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Terraform Validate') { 
+            steps {
+                script {
+                    sh 'terraform validate'
+                }
+            }
+        }
+        stage('Terraform Plan') { 
+            steps {
+                script {
+                    sh 'terraform plan'
+                }
+            }
+        }
+        stage('Terraform Apply') { 
+            steps {
+                script {
+                    sh 'terraform apply --auto-apprgit ove'
+                }
+            }
+        }
+    }
+}
